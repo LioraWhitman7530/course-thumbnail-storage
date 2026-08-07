@@ -67,7 +67,7 @@ const infrai = {
   storage: {
     bucket: {
       get: () => call<{ found?: boolean }>(`/v1/storage/bucket/get/${bucket}`, "GET"),
-      create: () => call("/v1/storage/bucket/create", "POST", { bucket }, `bucket-create-${bucket}`),
+      create: () => call("/v1/storage/bucket/create", "POST", { name: bucket }, `bucket-create-${bucket}`),
     },
     object: {
       put: (key: string, data_base64: string) =>

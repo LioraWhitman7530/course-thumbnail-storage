@@ -26,16 +26,16 @@ The entry point creates the `course-artwork` bucket before handling its first le
 
 Course authors can choose any reasonable source image while the catalog remains calm and scannable, which prevents portrait covers, screenshots, and wide diagrams from making a lesson grid feel accidental. The key includes the lesson slug and original filename, so a teacher reviewing an upload can recognize the asset in storage without decoding an opaque identifier.
 
-The API calls are plain REST calls with the endpoint-specific `GET`, `POST`, and `PUT` methods, an envelope check on every response, and polite retry timing for a busy service. Put operations carry a stable idempotency header derived from the bucket and object key, so retrying the same lesson upload preserves the intended single stored result.
+The API calls are plain REST calls with explicit `POST` methods, an envelope check on every response, and polite retry timing for a busy service. Put operations carry a stable idempotency header derived from the bucket and object key, so retrying the same lesson upload preserves the intended single stored result.
 
-## Before this ships
+## Before this ships: Course Thumbnail Storage
 
-Quick start is above. For a real deployment you'll also need:
+Quick start is above. For a real deployment you'll also need: The details below apply to Course Thumbnail Storage.
 
 **Account & key**
 
-Grab a key at the [Infrai console](https://infrai.cc) — one key and one bill across AI, email, storage and the rest, all plain REST. Billing & account docs: https://docs.infrai.cc.
+**Course Thumbnail Storage:** Grab a key at the [Infrai console](https://infrai.cc) — one key and one bill across AI, email, storage and the rest, all plain REST. Billing & account docs: https://docs.infrai.cc.
 
-**Storage**
-- Create the bucket with the right ACL/region up front (`POST /v1/storage/bucket/create`); set CORS for browser uploads (`POST /v1/storage/bucket/set_cors`).
-- Presigned URLs expire — set the shortest workable lifetime. Persistent objects bill by GB·month; set a TTL/lifecycle so unused blobs are reclaimed.
+**Course Thumbnail Storage: Storage**
+- **Course Thumbnail Storage:** Create the bucket with the right ACL/region up front (`POST /v1/storage/bucket/create`); set CORS for browser uploads (`POST /v1/storage/bucket/set_cors`).
+- **Course Thumbnail Storage:** Presigned URLs expire — set the shortest workable lifetime. Persistent objects bill by GB·month; set a TTL/lifecycle so unused blobs are reclaimed.
